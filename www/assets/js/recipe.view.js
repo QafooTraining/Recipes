@@ -12,19 +12,14 @@
         ingredients = view.map(
             docs,
             function(doc) {
-                if (doc.type != "recipe") {
-                    return;
-                }
-
-                for (var i = 0; i < doc.ingredients.length; ++i) {
-                    this.emit(doc.ingredients[i].name, doc);
-                }
+                // @TODO: Write map function
             }
         );
 
         return view.reduce(
             ingredients,
             function (key, values, rereduce) {
+                // @TODO: Write reduce function
                 return values;
             }
         );

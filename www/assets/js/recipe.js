@@ -11,9 +11,7 @@
             e.preventDefault();
 
             var recipe = Recipe.form.getRecipe(e.target);
-            hoodie.store.add("recipe", recipe).done(function(recipe) {
-                $('#toolbar').trigger("displayPage", {page: "list"});
-            });
+            // @TODO: Store recipe
 
             return false;
         };
@@ -22,21 +20,13 @@
             e.preventDefault();
 
             var recipe = Recipe.form.getRecipe(e.target);
-            hoodie.store.update("recipe", recipe.id, recipe).done(function(recipe) {
-                $('#toolbar').trigger("displayPage", {page: "list"});
-            });
+            // @TODO: Update recipe
 
             return false;
         };
 
         var updateRecipeList = function() {
-            hoodie.store.findAll("recipe").done(function (recipes) {
-                renderList(".my-recipes", "my-recipes.tpl", recipes);
-            });
-
-            hoodie.global.findAll("recipe").done(function (recipes) {
-                renderList(".global-recipes", "global-recipes.tpl", recipes);
-            });
+            // @TODO: Pass recipes to renderList function
         };
 
         var renderList = function(target, template, recipes) {
@@ -68,15 +58,7 @@
             e.preventDefault();
 
             var recipeId = $(e.currentTarget).data("recipe");
-            hoodie.store.find("recipe", recipeId).done(function(recipe) {
-                $('#toolbar').trigger("displayPage", {page: "recipe"});
-                recipe.formattedInstructions = marked(recipe.instructions);
-                Recipe.template.showTemplate(
-                    ".recipe",
-                    "templates/recipe.tpl",
-                    recipe
-                );
-            });
+            // @TODO: Find and display recipe
 
             updateRecipeList();
             return false;
@@ -86,15 +68,7 @@
             e.preventDefault();
 
             var recipeId = $(e.currentTarget).data("recipe");
-            hoodie.global.find("recipe", recipeId).done(function(recipe) {
-                $('#toolbar').trigger("displayPage", {page: "recipe"});
-                recipe.formattedInstructions = marked(recipe.instructions);
-                Recipe.template.showTemplate(
-                    ".recipe",
-                    "templates/recipe.tpl",
-                    recipe
-                );
-            });
+            // @TODO: Find and display recipe
 
             updateRecipeList();
             return false;
@@ -105,7 +79,7 @@
 
             var recipeId = $(e.currentTarget).data("recipe");
             if (confirm("Do you really want to remove the recipe with ID " + recipeId + "?", "Delete recipe")) {
-                hoodie.store.remove("recipe", recipeId);
+                // @TODO: Remove recipe
             }
 
             updateRecipeList();
@@ -116,21 +90,7 @@
             e.preventDefault();
 
             var recipeId = $(e.currentTarget).data("recipe");
-            hoodie.store.find("recipe", recipeId).done(function (recipe) {
-                $('#toolbar').trigger("displayPage", {page: "editRecipe"});
-                Recipe.template.showTemplate(
-                    ".editRecipe",
-                    "templates/edit.tpl",
-                    recipe,
-                    function () {
-                        $(".editRecipe button.ingredient").unbind("click");
-                        $(".editRecipe button.ingredient").bind("click", Recipe.form.addRow);
-
-                        $(".editRecipe form").unbind("submit");
-                        $(".editRecipe form").bind("submit", updateRecipe);
-                    }
-                );
-            });
+            // @TODO: Find and edit recipe
 
             updateRecipeList();
             return false;
@@ -140,7 +100,7 @@
             e.preventDefault();
 
             var recipeId = $(e.currentTarget).data("recipe");
-            hoodie.store.find("recipe", recipeId).publish();
+            // @TODO: Publish recipe
 
             updateRecipeList();
             return false;
@@ -150,7 +110,7 @@
             e.preventDefault();
 
             var recipeId = $(e.currentTarget).data("recipe");
-            hoodie.store.find("recipe", recipeId).unpublish();
+            // @TODO: Unpublish recipe
 
             updateRecipeList();
             return false;
@@ -164,12 +124,7 @@
             $(this).find(".create form").bind("submit", addRecipe);
 
             updateRecipeList();
-            hoodie.store.on('add:recipe', updateRecipeList);
-            hoodie.store.on('change:recipe', updateRecipeList);
-            hoodie.global.on('add:recipe', updateRecipeList);
-            hoodie.global.on('change:recipe', updateRecipeList);
-
-            hoodie.account.on('signup changeusername signin reauthenticated signout', updateRecipeList);
+            // @TODO: React on hoodie events
         });
     };
 }(jQuery));

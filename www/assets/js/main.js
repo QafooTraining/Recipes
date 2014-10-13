@@ -1,6 +1,6 @@
 "use strict";
 
-var hoodie  = new Hoodie();
+// @TODO: Create Hoodie instance
 
 $("#toolbar").toolbar({
     "listIngredients": function() {
