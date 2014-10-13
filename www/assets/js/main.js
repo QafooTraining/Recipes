@@ -17,4 +17,4 @@ $("#toolbar").toolbar({
     }
 });
 
-$(".content").recipe(hoodie);
+$(".content").recipe(/* hoodie */);
