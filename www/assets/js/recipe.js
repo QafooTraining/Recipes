@@ -60,7 +60,6 @@
             var recipeId = $(e.currentTarget).data("recipe");
             // @TODO: Find and display recipe
 
-            updateRecipeList();
             return false;
         }
 
@@ -70,7 +69,6 @@
             var recipeId = $(e.currentTarget).data("recipe");
             // @TODO: Find and display recipe
 
-            updateRecipeList();
             return false;
         }
 
